@@ -20,23 +20,15 @@
 
 ---
 
-🚀 **Current Projects:**
-- 🚧 Constructing **automated detection workflows** to safeguard digital operations.
-- 🤖 Creating **LLM-powered tools** for superior threat intelligence and automation.
-- 🖥️ Designing **cloud-native applications** that streamline cybersecurity processes.
-
----
-
 ✨ **Feel free to explore my repositories** and reach out for collaboration or a thoughtful cybersecurity & development chat! 💬🤝
 
 ---
 
 🌐 **Tech Stack & Tools:**
-- 🔐 **Cybersecurity:** 🛡️ **Splunk** | ☸️ **Kubernetes** | 🤖 **XSOAR** | 🔍 **Threat Detection**
-- 💻 **Development:** 🐍 **Python** | ☁️ **Azure & AWS** | ⚙️ **CI/CD** | 🖥️ **Linux**
+- 🔐 **Cybersecurity:** 🛡️ **Splunk** | 🛡️ **Azure Sentinel** | 📊 **ELK** | 🛡️ **Securonix** | 🛡️ **Netsurion SIEM** | 🤖 **XSOAR** | 🛡️ **Crowdstrike** | 🛡️ **Microsoft Defender for Endpoint (MDE)** | 🛠️ **Detection Engineering** | 🔧 **Cybersecurity Data Engineering** | 🕵️‍♂️ **Threat Hunting** | 🔍 **Threat Intelligence**
+- 💻 **Development:** 🐍 **Python** | 💻 **PowerShell** | ☁️ **Azure & AWS** | ⚙️ **CI/CD** | 🖥️ **Linux** | 🐳 **Containers** | 🔗 **Kafka** | ☸️ **Kubernetes**
 
 🖼️ **GitHub Stats** 📊
 
 | ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=GNishanSingh&layout=compact&theme=chartreuse-dark) |![GitHub Stats](https://github-readme-stats.vercel.app/api?username=GNishanSingh&show_icons=true&theme=chartreuse-dark) |
 | --- | --- |
-
